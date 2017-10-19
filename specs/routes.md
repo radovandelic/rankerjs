@@ -18,4 +18,4 @@
     * "/add"
         * method: post
         * req(1): req.body.imageurl
-        * behavior: sends imageurl to model, rerenders index.ejs with object from db
+        * behavior: sends imageurl to model, rerenders index.ejs with objects from db
