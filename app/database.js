@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var keys = require("./keys");
 
-module.exports = db = {
+module.exports = {
     database: `mongodb://${keys.username}:${keys.password}@ds121965.mlab.com:21965/student`,
     startDB: function() {
         //to get rid of promise/deprecated warnings
@@ -19,4 +19,3 @@ module.exports = db = {
     }
 }
 
-db.startDB();
