@@ -6,7 +6,8 @@
 
 * schema:
     * imageurl: String
-    * ranking: Number
+    * upvotes: Number
+    * downvotes: Number
 
 * behavior:
     * creates mongoose model based on schema and db

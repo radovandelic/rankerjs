@@ -2,7 +2,8 @@
     * db:
         * id
         * imageurl
-        * ranking
+        * upvotes
+        * downvotes
 
 * elements: 
     * link or button to /add and /random
