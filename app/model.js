@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-var schema = mongoose.schema({  
+var schema = mongoose.Schema({  
     imageurl: {
         type: String,
         required: true
