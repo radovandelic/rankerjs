@@ -5,10 +5,9 @@
          * _id:
             * type: object
             * properties:
-               * imageurl
-               * upvotes
-               * downvotes
-               * _id
+               * imageurl: string
+               * upvotes: number
+               * downvotes: number
 
 * elements: 
     * link or button to /add and /random
