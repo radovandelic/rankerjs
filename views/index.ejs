@@ -1,0 +1,11 @@
+<% include partials/header%>
+
+        <div class="carousel">
+            <% for(var key in db ) { %>
+                 <a class="carousel-item" href="#one!" id =  "<%=  db[key]._id %> "> <img src =" <%= db[key]["imageurl"] %> "></a>
+          <%  }%>
+
+ 
+              </div>
+
+<% include partials/footer%>
