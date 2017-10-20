@@ -1,5 +1,6 @@
 * receives:
     * db:
+      * _id:
         * id
         * imageurl
         * upvotes
