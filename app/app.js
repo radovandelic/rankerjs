@@ -24,7 +24,7 @@ app.use(function(req,res){
 
 // set up server
 app.listen(port, () => {
-    console.log("Port is listening on port" + port);
+    console.log("Port is listening on port " + port);
 });
 
 

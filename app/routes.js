@@ -6,14 +6,14 @@ var db = require("./database");
 
 db.startDB();
 
-router.use(bodyParser.urlencoded({extended: true}));
+router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 router.get("/", (req, res) => {
-    Image.find((err, images)=> {
-        if(err){
+    Image.find((err, images) => {
+        if (err) {
             console.log(err);
-        }else {
+        } else {
             res.render("index.ejs", { db: images });
         }
     })
@@ -28,11 +28,12 @@ router.post("/add", (req, res) => {
     req.body.downvotes = 0;
     var pic = new Image(req.body);
     pic.save((err) => {
-        if(err){
-            res.send(err);
+        if (err) {
+            res.send(err + "\n " + JSON.stringify(req.body));
         } else {
             res.render("add.ejs");
         }
     });
 });
 
+module.exports = router;
