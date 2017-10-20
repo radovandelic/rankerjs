@@ -29,7 +29,7 @@ router.post("/add", (req, res) => {
     var pic = new Image(req.body);
     pic.save((err) => {
         if (err) {
-            res.send(err + "\n " + JSON.stringify(req.body));
+            res.send(err);
         } else {
             res.render("add.ejs");
         }
