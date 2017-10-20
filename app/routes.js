@@ -5,16 +5,22 @@ var bodyParser = require("body-parser");
 var db = require("./database");
 
 db.startDB();
-
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 router.get("/", (req, res) => {
     Image.find((err, images) => {
+        var message = ""
         if (err) {
             console.log(err);
+<<<<<<< HEAD
         } else {
             res.render("index", { db: images });
+=======
+        } else {            
+            //res.send(JSON.stringify(images));
+            res.render("index.ejs", { db: images });
+>>>>>>> be613edf321f666b0a8d9dabda15dd59121e2593
         }
     })
 });
@@ -31,7 +37,7 @@ router.post("/add", (req, res) => {
         if (err) {
             res.send(err);
         } else {
-            res.render("add.ejs");
+            res.redirect("/");
         }
     });
 });

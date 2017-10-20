@@ -8,7 +8,11 @@ var port = 3000;
 app.use(express.static("public"));
 
 // set up the views directory
+<<<<<<< HEAD
 app.set("views", path.join(__dirname,"../views/"));
+=======
+app.set("views", path.join(__dirname,"../views"));
+>>>>>>> be613edf321f666b0a8d9dabda15dd59121e2593
 // set up our view engine
 app.set("view engine", "ejs");
 
