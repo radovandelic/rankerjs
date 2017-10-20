@@ -8,7 +8,7 @@
                * imageurl: string
                * upvotes: number
                * downvotes: number
-               * _id: object  (use .ToString() if you need it as a string
+               * _id: object  (use .ToString() if you need it as a string)
 
 * elements: 
     * link or button to /add and /random
