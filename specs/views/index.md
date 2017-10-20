@@ -1,9 +1,10 @@
 * receives:
     * db:
-        * id
-        * imageurl
-        * upvotes
-        * downvotes
+        + [_id]
+         * id
+         * imageurl
+         * upvotes
+         * downvotes
 
 * elements: 
     * link or button to /add and /random
