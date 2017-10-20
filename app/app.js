@@ -7,13 +7,14 @@ var port = 3000;
 // set up a static server
 app.use(express.static("public"));
 
-// set up our view engine
+// set up the views directory
 app.set("views", path.join(__dirname,"views"));
+// set up our view engine
 app.set("view engine", "ejs");
 
-// set up views
-var routes = require("routes");
-app.user("/", routes);
+// set up routes
+var routes = require("./routes");
+app.use("/", routes);
 
 // set up error middleware
 app.use(function(req,res){
