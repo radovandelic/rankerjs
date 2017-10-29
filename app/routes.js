@@ -46,6 +46,18 @@ router.get("/random", (req, res) => {
     });
 });
 
+router.get("/ranking", (req, res) => {
+    Image.find((err, images) => {
+        if (err) {
+            console.log(err);
+            res.redirect("/");
+        } else {
+            var rankedImages = logic.ranking(images);
+            res.render("ranking.ejs", { db: rankedImages });
+        }
+    })
+});
+
 router.get("/:id", (req, res) => {
     Image.findById(req.params.id, (err, image) => {
         if (err) {
