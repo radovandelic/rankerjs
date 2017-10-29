@@ -1,12 +1,9 @@
 <% include partials/header%>
 <h1 class="center-align"> Welcome to Ranker!  </h1>
-
-        <div class="carousel">
+        <div class="carousel" style="margin: auto;"> 
             <% for(var key in db ) { %>
-                 <a class="carousel-item" href ="/<%=  db[key]._id %>" id ="<%=  db[key]._id %>"> <img src ="<%= db[key]["imageurl"]%> "></a>
-          <%  }%>
-
- 
-              </div>
-
+                    <a class="carousel-item" href ="/<%=  db[key]._id %>" id ="<%=  db[key]._id %>"> <img src ="<%= db[key]["imageurl"]%> "></a>
+            <% } %> 
+        </div>
+</div>
 <% include partials/footer%>
