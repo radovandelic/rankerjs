@@ -38,11 +38,6 @@ router.post("/add", (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
-    Image.findById(req.params.id, (err, image) => {
-        res.render("image.ejs", { image: image });
-    })
-});
 
 router.get("/random", (req, res) => {
     Image.find((err, images) => {
@@ -51,4 +46,20 @@ router.get("/random", (req, res) => {
     });
 });
 
+router.get("/:id", (req, res) => {
+    Image.findById(req.params.id, (err, image) => {
+        if (err) {
+            console.log(err);
+            res.redirect("/");
+        } else {
+            res.render("image.ejs", { image: image });
+        }
+    })
+});
+
+/*router.post("/:id", (req, res) => {
+   var id = req.params.id;
+   Image.findById
+   if() 
+});*/
 module.exports = router;
