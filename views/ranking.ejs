@@ -1,0 +1,10 @@
+<% include partials/header%>
+
+<% for(var id_rank = 0; i<db.length; i++) { %>
+<p> <%= var rank = id_rank +1;  %></p>
+ <img  style =" margin:auto; max-width:60%;" src="<%= db[id_rank]["imageurl"] %>">
+
+
+<% } %>
+
+<% include partials/footer%>
