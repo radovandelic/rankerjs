@@ -2,12 +2,12 @@
 
   <div class="center-align ">
     <form action="/<%= image._id %>" method="POST">
-      <img style= "heigth: 200px; width: 300px;" src="<%= image.imageurl %>">
+      <img  style =" margin:auto; max-width:60%;" src="<%= image.imageurl %>">
       <!-- BUTTONS BELOW -->
       <div>
       
         <button class="circle card-panel hoverable" name="vote" type="submit" value="up">
-          <img src='https://cdn2.iconfinder.com/data/icons/happy-smile-1/512/44_smiley-128.png'>
+          <img  src='https://cdn2.iconfinder.com/data/icons/happy-smile-1/512/44_smiley-128.png'>
          <p> Up votes:
           <%= image.upvotes %>
         </p>
