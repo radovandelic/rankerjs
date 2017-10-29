@@ -57,9 +57,19 @@ router.get("/:id", (req, res) => {
     })
 });
 
-/*router.post("/:id", (req, res) => {
-   var id = req.params.id;
-   Image.findById
-   if() 
-});*/
+router.post("/:id", (req, res) => {
+    var vote = req.body.vote;
+    var id = req.params.id;
+    Image.findById(id, (err, image) => {
+        if (err) {
+            console.log(err);
+        } else {
+            if (vote == "up") { image.upvotes++; }
+            else if (vote = "down") { image.downvotes++; }
+            image.save();
+        }
+        res.redirect("/random");
+    })
+});
+
 module.exports = router;
