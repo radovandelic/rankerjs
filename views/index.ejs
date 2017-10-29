@@ -2,7 +2,7 @@
 
         <div class="carousel">
             <% for(var key in db ) { %>
-                 <a class="carousel-item" id ="<%=  db[key]._id %>"> <img src ="<%= db[key]["imageurl"]%> "></a>
+                 <a class="carousel-item" href ="/:id" id ="<%=  db[key]._id %>"> <img src ="<%= db[key]["imageurl"]%> "></a>
           <%  }%>
 
  

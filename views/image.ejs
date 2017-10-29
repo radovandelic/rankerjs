@@ -1,7 +1,8 @@
-<% include partials/header%>
+<% include partials/header %>
+
  <div class="center-align ">
         <form action ="/:id" method ="POST">  
-        <img src ="<%= image.imageurl% >">
+        <img src ="<%= image.imageurl %>">
        <!-- BUTTONS BELOW -->
        <div>
        <p> Up votes: <%= image.upvotes %> </p>
@@ -10,7 +11,7 @@
          </div>
 
          <div>
-         <p>  Down votes : <%= image.upvotes %> </p>
+         <p>  Down votes : <%= image.downvotes %> </p>
          <button class = "card-panel hoverable" type = "submit" name ="vote" value ="down">
         <img src='https://cdn2.iconfinder.com/data/icons/happy-smile-1/512/32_smiley-128.png'></button> 
           </div>    
