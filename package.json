@@ -1,7 +1,6 @@
 {
   "name": "image_ranker",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,5 +20,6 @@
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "mongoose": "^4.12.3"
-  }
+  },
+  "description": ""
 }
