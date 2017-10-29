@@ -2,22 +2,20 @@
 
   <div class="center-align ">
     <form action="/<%= image._id %>" method="POST">
-      <img src="<%= image.imageurl %>">
+      <img style= "heigth: 200px; width: 300px;" src="<%= image.imageurl %>">
       <!-- BUTTONS BELOW -->
       <div>
-        <p> Up votes:
-          <%= image.upvotes %>
-        </p>
+      
         <button class="circle card-panel hoverable" name="vote" type="submit" value="up">
           <img src='https://cdn2.iconfinder.com/data/icons/happy-smile-1/512/44_smiley-128.png'>
-      </div>
-
-      <div>
-        <p> Down votes:
-          <%= image.downvotes %>
+         <p> Up votes:
+          <%= image.upvotes %>
         </p>
         <button class="card-panel hoverable" type="submit" name="vote" value="down">
           <img src='https://cdn2.iconfinder.com/data/icons/happy-smile-1/512/32_smiley-128.png'>
+           <p> Down votes:
+          <%= image.downvotes %>
+        </p>
         </button>
       </div>
     </form>
