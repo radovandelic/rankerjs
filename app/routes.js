@@ -3,6 +3,7 @@ var router = express.Router();
 var Image = require("./model");
 var bodyParser = require("body-parser");
 var db = require("./database");
+var logic = require("./logic");
 
 db.startDB();
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -13,7 +14,7 @@ router.get("/", (req, res) => {
         var message = ""
         if (err) {
             console.log(err);
-        } else {            
+        } else {
             //res.send(JSON.stringify(images));
             res.render("index.ejs", { db: images });
         }
@@ -34,6 +35,19 @@ router.post("/add", (req, res) => {
         } else {
             res.redirect("/");
         }
+    });
+});
+
+router.get("/:id", (req, res) => {
+    Image.findById(req.params.id, (err, image) => {
+        res.render("image.ejs", { image: image });
+    })
+});
+
+router.get("/random", (req, res) => {
+    Image.find((err, images) => {
+        var id = logic.random(images);
+        res.redirect("/" + id);
     });
 });
 
