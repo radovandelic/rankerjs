@@ -2,7 +2,7 @@ var express = require("express");
 var app = express();
 var path = require("path");
 
-var port = 80;
+var port = 5000;
 
 // set up a static server
 app.use(express.static("public"));
