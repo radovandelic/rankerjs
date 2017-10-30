@@ -2,8 +2,8 @@ var express = require("express");
 var app = express();
 var path = require("path");
 
-var port = 5000;
-app.set('port', (process.env.PORT || port));
+var port = (process.env.PORT || 5000);
+app.set('port', port);
 // set up a static server
 app.use(express.static("public"));
 
@@ -24,5 +24,5 @@ app.use(function(req,res){
 
 // set up server
 app.listen(port, () => {
-    console.log("App is listening on port " + app.get("port"));
+    console.log("App is listening on port " + port);
 });
