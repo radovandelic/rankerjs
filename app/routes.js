@@ -41,8 +41,13 @@ router.post("/add", (req, res) => {
 
 router.get("/random", (req, res) => {
     Image.find((err, images) => {
-        var id = logic.random(images);
-        res.redirect("/" + id);
+        if(err){
+            console.log(err);
+            res.redirect("/");
+        } else{
+            var id = logic.random(images);
+            res.redirect("/" + id);
+        }
     });
 });
 
