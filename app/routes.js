@@ -7,7 +7,7 @@ var mongoose = require("mongoose")
 var ImgixClient = require('imgix-core-js');
 var apitoken = process.env.apitoken ? process.env.apitoken : require("./keys.js").apitoken;
 var client = new ImgixClient({
-    host: "rankerjs.imgix.net",
+    host: "resize.imgix.net",
     secureURLToken: apitoken
 });
 
