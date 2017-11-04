@@ -2,10 +2,6 @@ var express = require("express");
 var router = express.Router();
 var mongoose = require("mongoose");
 
-var imgur = require('imgur-node-api');
-var imgur_client_id = process.env.imgur_client_id || require("./keys.js").imgur_client_id;
-imgur.setClientID(imgur_client_id);
-
 var cloudinary = require('cloudinary');
 var cloudinary_config = process.env.cloud_name ? {
     cloud_name: process.env.cloud_name,
