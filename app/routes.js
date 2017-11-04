@@ -25,6 +25,13 @@ router.get("/", (req, res) => {
         if (err) {
             console.log(err);
         } else {
+            images.forEach(function (image) {
+                cloudinary.uploader.upload(image["imageurl"], function (result) {
+                    Image.update({ _id: image["_id"] }, { $set: { thumburl: result.url } }, err => {
+                        if (err) { console.log(err); }
+                    });
+                }, { quality: 70, width: 240, crop: "scale" });
+            })
             res.render("index.ejs", { db: images });
         }
     })
@@ -48,7 +55,7 @@ router.post("/add", (req, res) => {
             }
         });
 
-    }, { width: 250, height: 250, crop: "limit" })
+    }, { quality: 70, width: 250, crop: "scale" })
 });
 
 
