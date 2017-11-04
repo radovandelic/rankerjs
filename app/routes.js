@@ -21,17 +21,16 @@ router.use(bodyParser.json());
 
 router.get("/", (req, res) => {
     Image.find({}, (err, images) => {
-        var message = ""
         if (err) {
             console.log(err);
         } else {
-            images.forEach(function (image) {
+            /*images.forEach(function (image) {
                 cloudinary.uploader.upload(image["imageurl"], function (result) {
                     Image.update({ _id: image["_id"] }, { $set: { thumburl: result.url } }, err => {
                         if (err) { console.log(err); }
                     });
                 }, { quality: 70, width: 240, crop: "scale" });
-            })
+            })*/
             res.render("index.ejs", { db: images });
         }
     })
