@@ -2,6 +2,13 @@ var express = require("express");
 var router = express.Router();
 var mongoose = require("mongoose");
 
+
+var ImgixClient = require('imgix-core-js');
+var client = new ImgixClient({
+    host: "rankerjs.imgix.net",
+    secureURLToken: process.env.apitoken || require("./keys").apitoken
+});
+
 var cloudinary = require('cloudinary');
 var cloudinary_config = process.env.cloud_name ? {
     cloud_name: process.env.cloud_name,
@@ -24,13 +31,6 @@ router.get("/", (req, res) => {
         if (err) {
             console.log(err);
         } else {
-            /*images.forEach(function (image) {
-                cloudinary.uploader.upload(image["imageurl"], function (result) {
-                    Image.update({ _id: image["_id"] }, { $set: { thumburl: result.url } }, err => {
-                        if (err) { console.log(err); }
-                    });
-                }, { quality: 70, width: 240, crop: "scale" });
-            })*/
             res.render("index.ejs", { db: images });
         }
     })
@@ -43,8 +43,19 @@ router.get("/add", (req, res) => {
 router.post("/add", (req, res) => {
     req.body.upvotes = 0;
     req.body.downvotes = 0;
-    cloudinary.uploader.upload(req.body.imageurl, function (result) {
+
+    //resizes and compresses image
+    var url = client.buildURL(req.body.imageurl, { w: 300, fm: "jpg", auto: "compress" });
+
+    cloudinary.uploader.upload(url, function (result) {
+
+        //sets image url to cloudinary cdn
         req.body.thumburl = result.url;
+
+        //sets image to imgix cdn
+        req.body.thumburl = "http://rankerimg.imgix.net" + req.body.thumburl.substring(req.body.thumburl.lastIndexOf("/"), req.body.thumburl.length);
+
+        //saves image data to db
         var pic = new Image(req.body);
         pic.save((err) => {
             if (err) {
@@ -53,8 +64,7 @@ router.post("/add", (req, res) => {
                 res.redirect("/");
             }
         });
-
-    }, { quality: 70, width: 250, crop: "scale" })
+    })
 });
 
 

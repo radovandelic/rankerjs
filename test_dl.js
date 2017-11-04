@@ -24,9 +24,18 @@ imgur.upload(`https://rankerjs.imgix.net/https%3A%2F%2Fassets.wired.com%2Fphotos
 });*/
 
 var cloudinary = require('cloudinary');
-var key = require("./app/keys.js")
+var keys = require("./app/keys.js")
 cloudinary.config(keys.cloudinary_config);
 
-cloudinary.uploader.upload("http://webshop.viva-iberica.com/ekmps/shops/rlust/images/donkey-wooden-saddle-pack-and-donkey-harness-1116-p.jpg", function (result) {
+cloudinary.uploader.upload("https://rankerimg.imgix.net/clvvs78ehkum63df3ra0.jpg?w=1000&ixlib=js-1.1.1", function (result) {
     console.log(result.url);
-}, { width: 250, height: 250, crop: "limit" });
+}/*, { width: 250, height: 250, crop: "scale" }*/);
+/*
+var ImgixClient = require('imgix-core-js');
+
+var client = new ImgixClient({
+    host: "rankerimg.imgix.net",
+    secureURLToken: "rMVf6Vd4JpKjYbqU"
+});
+var url = client.buildURL("clvvs78ehkum63df3ra0.jpg", { width: 240 });
+console.log(url);*/
