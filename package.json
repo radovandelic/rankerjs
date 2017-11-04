@@ -18,11 +18,9 @@
   },
   "homepage": "https://github.com/radovandelic/rankerjs#readme",
   "dependencies": {
-    "download": "^6.2.5",
+    "cloudinary": "^1.9.1",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
-    "file-system": "^2.2.2",
-    "imgix-core-js": "^1.1.1",
     "mongoose": "^4.12.3"
   },
   "description": ""

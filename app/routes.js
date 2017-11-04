@@ -1,21 +1,25 @@
 var express = require("express");
 var router = express.Router();
-var Image = require("./model");
-var bodyParser = require("body-parser");
-var mongoose = require("mongoose")
+var mongoose = require("mongoose");
 
-var ImgixClient = require('imgix-core-js');
-var apitoken = process.env.apitoken ? process.env.apitoken : require("./keys.js").apitoken;
-var client = new ImgixClient({
-    host: "rankerjs.imgix.net",
-    secureURLToken: apitoken
-});
+var imgur = require('imgur-node-api');
+var imgur_client_id = process.env.imgur_client_id || require("./keys.js").imgur_client_id;
+imgur.setClientID(imgur_client_id);
+
+var cloudinary = require('cloudinary');
+var cloudinary_config = process.env.cloud_name ? {
+    cloud_name: process.env.cloud_name,
+    api_key: process.env.api_key,
+    api_secret: process.env.api_secret
+} : require("./keys").cloudinary_config;
+cloudinary.config(cloudinary_config);
 
 var db = require("./database");
+var Image = require("./model");
 var logic = require("./logic");
-
-
 db.startDB();
+
+var bodyParser = require("body-parser");
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
@@ -37,15 +41,18 @@ router.get("/add", (req, res) => {
 router.post("/add", (req, res) => {
     req.body.upvotes = 0;
     req.body.downvotes = 0;
-    req.body.thumburl = client.buildURL(req.body.imageurl, { w: 250, h: 250 });
-    var pic = new Image(req.body);
-    pic.save((err) => {
-        if (err) {
-            res.send(err);
-        } else {
-            res.redirect("/");
-        }
-    });
+    cloudinary.uploader.upload(req.body.imageurl, function (result) {
+        req.body.thumburl = result.url;
+        var pic = new Image(req.body);
+        pic.save((err) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.redirect("/");
+            }
+        });
+
+    }, { width: 250, height: 250, crop: "limit" })
 });
 
 
