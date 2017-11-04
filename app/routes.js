@@ -2,20 +2,29 @@ var express = require("express");
 var router = express.Router();
 var Image = require("./model");
 var bodyParser = require("body-parser");
+var mongoose = require("mongoose")
+
+var ImgixClient = require('imgix-core-js');
+var apitoken = process.env.apitoken ? process.env.apitoken : require("./keys.js").apitoken;
+var client = new ImgixClient({
+    host: "rankerjs.imgix.net",
+    secureURLToken: apitoken
+});
+
 var db = require("./database");
 var logic = require("./logic");
+
 
 db.startDB();
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 router.get("/", (req, res) => {
-    Image.find((err, images) => {
+    Image.find({}, (err, images) => {
         var message = ""
         if (err) {
             console.log(err);
         } else {
-            //res.send(JSON.stringify(images));
             res.render("index.ejs", { db: images });
         }
     })
@@ -28,6 +37,7 @@ router.get("/add", (req, res) => {
 router.post("/add", (req, res) => {
     req.body.upvotes = 0;
     req.body.downvotes = 0;
+    req.body.thumburl = client.buildURL(req.body.imageurl, { w: 250, h: 250 });
     var pic = new Image(req.body);
     pic.save((err) => {
         if (err) {
@@ -41,10 +51,10 @@ router.post("/add", (req, res) => {
 
 router.get("/random", (req, res) => {
     Image.find((err, images) => {
-        if(err){
+        if (err) {
             console.log(err);
             res.redirect("/");
-        } else{
+        } else {
             var id = logic.random(images);
             res.redirect("/" + id);
         }
@@ -64,14 +74,16 @@ router.get("/ranking", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-    Image.findById(req.params.id, (err, image) => {
-        if (err) {
-            console.log(err);
-            res.redirect("/");
-        } else {
-            res.render("image.ejs", { image: image });
-        }
-    })
+    if (mongoose.Types.ObjectId.isValid(req.params.id)) {
+        Image.findById(req.params.id, (err, image) => {
+            if (err) {
+                console.log(err);
+                res.redirect("/");
+            } else {
+                res.render("image.ejs", { image: image });
+            }
+        })
+    }
 });
 
 router.post("/:id", (req, res) => {

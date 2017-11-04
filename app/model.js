@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-var schema = mongoose.Schema({  
+var schema = mongoose.Schema({
     imageurl: {
         type: String,
         required: true
@@ -12,6 +12,10 @@ var schema = mongoose.Schema({
     downvotes: {
         type: Number,
         required: true
+    },
+    thumburl: {
+        type: String,
+        required: false
     }
 })
 

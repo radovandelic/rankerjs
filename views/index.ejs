@@ -2,8 +2,13 @@
 <h1 class="center-align"> Welcome to Ranker!  </h1>
         <div class="carousel" style="margin: auto;"> 
             <% for(var key in db ) { %>
-                    <a class="carousel-item" href ="/<%=  db[key]._id %>" id ="<%=  db[key]._id %>"> <img src ="<%= db[key]["imageurl"]%> "></a>
+                    <a class="carousel-item" style="width: 20vw;" href ="/<%=  db[key]._id %>" id ="<%=  db[key]._id %>"> 
+                        <img src ="<%= db[key]['thumburl'] || db[key]['imageurl'] %> "></a>
             <% } %> 
         </div>
 </div>
+<script> $(document).ready(function(){
+       $('.carousel').carousel();
+     });
+</script>
 <% include partials/footer%>
