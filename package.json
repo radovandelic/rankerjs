@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/radovandelic/rankerjs/issues"
   },
-  "homepage": "https://github.com/radovandelic/rankerjs#readme",
+  "homepage": "http://rankerjs.herokuapp.com",
   "dependencies": {
     "cloudinary": "^1.9.1",
     "compression": "^1.7.1",
