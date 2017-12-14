@@ -53,7 +53,7 @@ router.post("/add", (req, res) => {
         req.body.thumburl = result.url;
 
         //sets image to imgix cdn
-        req.body.thumburl = "http://rankerimg.imgix.net" + req.body.thumburl.substring(req.body.thumburl.lastIndexOf("/"), req.body.thumburl.length);
+        req.body.thumburl = "https://rankerimg.imgix.net" + req.body.thumburl.substring(req.body.thumburl.lastIndexOf("/"), req.body.thumburl.length);
 
         //saves image data to db
         var pic = new Image(req.body);
@@ -119,5 +119,7 @@ router.post("/:id", (req, res) => {
         res.redirect("/random");
     })
 });
+
+
 
 module.exports = router;
